@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const jobRoutes = require("./routes/Job");
-const applicationRoutes = require("./routes/application");
+const applicationRoutes = require("./routes/Application");
 const authRoutes = require("./routes/auth");
 const testRoutes = require("./routes/test");
 const app = express();   // ✅ app created BEFORE using it
