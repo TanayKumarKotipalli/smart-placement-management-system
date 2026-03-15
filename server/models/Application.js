@@ -1,0 +1,39 @@
+const mongoose = require("mongoose");
+
+const applicationSchema = new mongoose.Schema(
+  {
+    student: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
+    job: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Job",
+      required: true,
+    },
+
+    compatibilityScore: {
+      type: Number,
+      default: 0,
+    },
+
+    status: {
+      type: String,
+      enum: [
+        "Applied",
+        "Shortlisted",
+        "Interview",
+        "Selected",
+        "Rejected",
+      ],
+      default: "Applied",
+    },
+  },
+  { timestamps: true }
+);
+
+module.exports =
+  mongoose.models.Application ||
+  mongoose.model("Application", applicationSchema);
