@@ -12,7 +12,7 @@ function AdminDashboard() {
 
   // ================= FETCH USERS =================
   const fetchUsers = async () => {
-    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/users", {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/users`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setUsers(res.data);
@@ -20,7 +20,7 @@ function AdminDashboard() {
 
   // ================= FETCH JOBS =================
   const fetchJobs = async () => {
-    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/jobs", {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/jobs`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setJobs(res.data);

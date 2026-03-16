@@ -29,3 +29,9 @@ mongoose.connect(process.env.MONGO_URI)
     });
   })
   .catch((err) => console.log(err));
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://smart-placement-management-system.vercel.app",
+  credentials: true
+}));

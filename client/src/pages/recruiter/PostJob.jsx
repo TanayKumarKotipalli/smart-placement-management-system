@@ -31,7 +31,7 @@ export default function PostJob() {
     e.preventDefault();
 
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/jobs/create", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

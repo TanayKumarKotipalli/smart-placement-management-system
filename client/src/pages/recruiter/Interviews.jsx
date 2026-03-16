@@ -8,7 +8,7 @@ export default function Interviews() {
   const fetchApplications = async () => {
     try {
       const res = await fetch(
-        "${import.meta.env.VITE_API_URL}/api/applications/recruiter",
+        `${import.meta.env.VITE_API_URL}/api/applications/recruiter`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

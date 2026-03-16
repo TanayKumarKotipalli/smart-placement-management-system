@@ -8,7 +8,7 @@ export default function RecruiterDashboard() {
   // Fetch recruiter jobs
   const fetchJobs = async () => {
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/jobs/recruiter", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/recruiter`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -182,7 +182,7 @@ function PostJobForm({ refreshJobs }) {
     e.preventDefault();
 
     try {
-      await fetch("${import.meta.env.VITE_API_URL}/api/jobs/create", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/jobs/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

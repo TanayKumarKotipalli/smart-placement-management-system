@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { REGISTER_API } from "../utils/api";
 import "./Register.css";
 
 export default function Register() {
@@ -18,21 +19,19 @@ export default function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      await axios.post(
-        "${import.meta.env.VITE_API_URL}/api/auth/register",
-        form
-      );
+  try {
+    await axios.post(REGISTER_API, form);
 
-      alert("Registration successful. Please login.");
-      navigate("/login");
-    } catch (err) {
-      alert("Registration failed");
-    }
-  };
+    alert("Registration successful. Please login.");
+    navigate("/login");
+  } catch (err) {
+    console.error(err);
+    alert("Registration failed");
+  }
+};
 
   return (
     <div className="register-container">
