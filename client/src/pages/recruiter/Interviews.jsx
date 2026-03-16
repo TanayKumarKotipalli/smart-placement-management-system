@@ -8,7 +8,7 @@ export default function Interviews() {
   const fetchApplications = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/api/applications/recruiter",
+        "${import.meta.env.VITE_API_URL}/api/applications/recruiter",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -35,7 +35,7 @@ export default function Interviews() {
  const updateStatus = async (id, status) => {
   try {
     const res = await fetch(
-      `http://localhost:5000/api/applications/update/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/applications/update/${id}`,
       {
         method: "PUT",
         headers: {

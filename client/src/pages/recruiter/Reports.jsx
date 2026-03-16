@@ -5,7 +5,7 @@ export default function Reports() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/applications/recruiter", {
+    fetch("${import.meta.env.VITE_API_URL}/api/applications/recruiter", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())

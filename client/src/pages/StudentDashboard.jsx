@@ -19,7 +19,7 @@ function StudentDashboard() {
   useEffect(() => {
     async function fetchProfile() {
       const res = await axios.get(
-        "http://localhost:5000/api/users/profile",
+        "${import.meta.env.VITE_API_URL}/api/users/profile",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setStudent(res.data);
@@ -32,7 +32,7 @@ function StudentDashboard() {
   useEffect(() => {
     if (activeTab === "jobs") {
       axios
-        .get("http://localhost:5000/api/users/recommended", {
+        .get("${import.meta.env.VITE_API_URL}/api/users/recommended", {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then((res) => setRecommendedJobs(res.data));
@@ -43,7 +43,7 @@ function StudentDashboard() {
   useEffect(() => {
     if (activeTab === "applications") {
       axios
-        .get("http://localhost:5000/api/applications/my", {
+        .get("${import.meta.env.VITE_API_URL}/api/applications/my", {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then((res) => setApplications(res.data));
@@ -310,7 +310,7 @@ function StatusBadge({ status }) {
           style={primaryBtn}
           onClick={async () => {
             await axios.post(
-              `http://localhost:5000/api/applications/apply/${job._id}`,
+              `${import.meta.env.VITE_API_URL}/api/applications/apply/${job._id}`,
               {},
               { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -413,13 +413,13 @@ function StatusBadge({ status }) {
                   data.append("resume", selectedFile);
 
                   await axios.post(
-                    "http://localhost:5000/api/users/resume/upload",
+                    "${import.meta.env.VITE_API_URL}/api/users/resume/upload",
                     data,
                     { headers: { Authorization: `Bearer ${token}` } }
                   );
 
                   const updated = await axios.get(
-                    "http://localhost:5000/api/users/profile",
+                    "${import.meta.env.VITE_API_URL}/api/users/profile",
                     { headers: { Authorization: `Bearer ${token}` } }
                   );
 
@@ -436,7 +436,7 @@ function StatusBadge({ status }) {
                 style={primaryBtn}
                 onClick={async () => {
                   const res = await axios.get(
-                    "http://localhost:5000/api/users/ats",
+                    "${import.meta.env.VITE_API_URL}/api/users/ats",
                     { headers: { Authorization: `Bearer ${token}` } }
                   );
                   setAtsData(res.data);
@@ -555,7 +555,7 @@ function StatusBadge({ status }) {
               style={primaryBtn}
               onClick={async () => {
                 const res = await axios.put(
-                  "http://localhost:5000/api/users/profile",
+                  "${import.meta.env.VITE_API_URL}/api/users/profile",
                   formData,
                   { headers: { Authorization: `Bearer ${token}` } }
                 );

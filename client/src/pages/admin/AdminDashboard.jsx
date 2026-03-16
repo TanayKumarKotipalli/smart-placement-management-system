@@ -12,7 +12,7 @@ function AdminDashboard() {
 
   // ================= FETCH USERS =================
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/users", {
+    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/users", {
       headers: { Authorization: `Bearer ${token}` }
     });
     setUsers(res.data);
@@ -20,7 +20,7 @@ function AdminDashboard() {
 
   // ================= FETCH JOBS =================
   const fetchJobs = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/jobs", {
+    const res = await axios.get("${import.meta.env.VITE_API_URL}/api/admin/jobs", {
       headers: { Authorization: `Bearer ${token}` }
     });
     setJobs(res.data);
@@ -33,7 +33,7 @@ function AdminDashboard() {
 
   const handleBlock = async (userId) => {
     await axios.put(
-      `http://localhost:5000/api/admin/block/${userId}`,
+      `${import.meta.env.VITE_API_URL}/api/admin/block/${userId}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -42,7 +42,7 @@ function AdminDashboard() {
 
   const handleDeleteJob = async (jobId) => {
     await axios.delete(
-      `http://localhost:5000/api/admin/delete-job/${jobId}`,
+      `${import.meta.env.VITE_API_URL}/api/admin/delete-job/${jobId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     fetchJobs();

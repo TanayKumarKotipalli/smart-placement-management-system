@@ -5,7 +5,7 @@ export default function MyJobs() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/jobs/recruiter", {
+    fetch("${import.meta.env.VITE_API_URL}/api/jobs/recruiter", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

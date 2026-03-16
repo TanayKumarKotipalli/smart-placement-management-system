@@ -5,7 +5,7 @@ export default function MatchedCandidates() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/applications/recruiter", {
+    fetch("${import.meta.env.VITE_API_URL}/api/applications/recruiter", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -18,7 +18,7 @@ export default function MatchedCandidates() {
   }, []);
 
   const updateStatus = async (id, status) => {
-    await fetch(`http://localhost:5000/api/applications/update/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/applications/update/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
