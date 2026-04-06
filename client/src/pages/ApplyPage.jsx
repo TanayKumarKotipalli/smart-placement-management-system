@@ -11,6 +11,10 @@ function ApplyPage() {
     coverLetter: ""
   });
 
+  // ✅ ADD HERE (before return)
+  const appliedJobs = JSON.parse(localStorage.getItem("appliedJobs")) || [];
+  const alreadyApplied = appliedJobs.includes(jobId);
+
   return (
     <div style={wrapper}>
       <div style={card}>
@@ -45,47 +49,32 @@ function ApplyPage() {
         />
 
         <button
-          style={btn}
+          style={{
+            ...btn,
+            background: alreadyApplied ? "gray" : "#2563eb",
+            cursor: alreadyApplied ? "not-allowed" : "pointer"
+          }}
+          disabled={alreadyApplied}
           onClick={() => {
+            if (alreadyApplied) {
+              alert("You have already applied for this job");
+              return;
+            }
+
+            const updated = [...appliedJobs, jobId];
+            localStorage.setItem("appliedJobs", JSON.stringify(updated));
+
             alert("Application Submitted Successfully!");
+
             navigate("/student");
           }}
         >
-          Submit Application
+          {alreadyApplied ? "Already Applied" : "Submit Application"}
         </button>
+
       </div>
     </div>
   );
 }
 
 export default ApplyPage;
-
-/* ===== Styles ===== */
-
-const wrapper = {
-  minHeight: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  background: "#f4f6f9"
-};
-
-const card = {
-  background: "white",
-  padding: 40,
-  borderRadius: 10,
-  width: 400,
-  display: "flex",
-  flexDirection: "column",
-  gap: 15,
-  boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
-};
-
-const btn = {
-  padding: "10px",
-  background: "#2563eb",
-  color: "white",
-  border: "none",
-  borderRadius: 6,
-  cursor: "pointer"
-};
