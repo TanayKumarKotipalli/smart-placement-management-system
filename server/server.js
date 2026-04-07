@@ -7,8 +7,10 @@ const applicationRoutes = require("./routes/Application");
 const authRoutes = require("./routes/auth");
 const testRoutes = require("./routes/test");
 const app = express();   // ✅ app created BEFORE using it
-
-app.use(cors());
+app.use(cors({
+  origin: "https://smart-placement-management-system.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
@@ -25,13 +27,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected");
     app.listen(PORT, () => {
-      console.log('Server running on port ${PORT}');
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => console.log(err));
-const cors = require("cors");
-
-app.use(cors({
-  origin: "https://smart-placement-management-system.vercel.app",
-  credentials: true
-}));
